@@ -8,9 +8,13 @@
 
   <div class="flix-col-12 flix-col-8-sm">
     <h4 class="flix-h4 flix-h4--section-header">Station list</h4>
-    <div class="flix-box">
-      <app-station-list></app-station-list>
+    <div class="flix-box" *ngIf="!isLoadingStationList; else loadingTemplate">
+      <app-station-list [stationList]="stationList"></app-station-list>
       <app-pager></app-pager>
     </div>
   </div>
 </div>
+
+<ng-template #loadingTemplate>
+  <app-loading loadingText="Please wait, loading stations..."></app-loading>
+</ng-template>

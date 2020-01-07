@@ -3,26 +3,12 @@
     <tr class="flix-table__header">
       <th>Station</th>
       <th>Total Parking slots</th>
+      <th>Available slots</th>
     </tr>
-    <tr>
-      <td>Station 1</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <td>Station 2</td>
-      <td>37</td>
-    </tr>
-    <tr>
-      <td>Station 3</td>
-      <td>24</td>
-    </tr>
-    <tr>
-      <td>Station 4</td>
-      <td>42</td>
-    </tr>
-    <tr>
-      <td>Station 5</td>
-      <td>51</td>
+    <tr *ngFor="let station of stationList">
+      <td>Station {{ station.id }}</td>
+      <td>{{ station.countSlots }}</td>
+      <td>{{ station.availableSlots }}</td>
     </tr>
   </table>
 </div>
