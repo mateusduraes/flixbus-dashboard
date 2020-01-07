@@ -11,7 +11,7 @@
     <div class="flix-box" *ngIf="!isLoadingList; else loadingTemplate">
       <app-bus-filter (busFilterChange)="filter($event)"></app-bus-filter>
       <app-bus-list [busList]="busList"></app-bus-list>
-      <app-pager (pagerChange)="changePage($event)"></app-pager>
+      <app-pager (pagerChange)="changePage($event)" [totalPages]="totalPages"></app-pager>
     </div>
   </div>
 </div>

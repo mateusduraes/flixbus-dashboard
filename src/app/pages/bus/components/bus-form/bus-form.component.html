@@ -7,7 +7,9 @@
       <label class="flix-select__label flix-label" for="select-valid">Station</label>
       <select formControlName="stationId" id="select-valid" class="flix-select__field">
         <option [value]="null">Select a station</option>
-        <option *ngFor="let station of stationList" [value]="station.id">Station {{ station.id }}</option>
+        <option *ngFor="let station of stationList" [disabled]="!station.availableSlots" [value]="station.id">
+          Station {{ station.id }} {{ !station.availableSlots ? '- Full' : ''}}
+        </option>
       </select>
     </div>
   </div>

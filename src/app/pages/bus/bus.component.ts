@@ -16,6 +16,7 @@ export class BusComponent implements OnInit {
 
   public stationList: IStation[] = [];
   public busTypes: string[] = [];
+  public totalPages: number = 0;
 
   public isLoadingRegisterBus: boolean = false;
   @ViewChild(BusFormComponent, { static: true }) busFormComponent: BusFormComponent;
@@ -38,12 +39,18 @@ export class BusComponent implements OnInit {
 
   public filter(filter: any): void {}
 
-  public changePage(page: number): void {}
+  public changePage(page: number): void {
+    this.getBusList(page);
+  }
 
-  private async getBusList(): Promise<void> {
+  private async getBusList(page = 1): Promise<void> {
     try {
-      this.isLoadingList = true;
-      this.busList = await this.busService.getBuses();
+      if (page === 1) {
+        this.isLoadingList = true;
+      }
+      const { buses, totalBuses } = await this.busService.getBuses(page);
+      this.busList = buses;
+      this.totalPages = Math.ceil(totalBuses / 6);
     } catch (e) {
       console.error('Error getting busList', e);
       // Handle error, show to the user

@@ -1,0 +1,6 @@
+.flix-pager__item {
+  cursor: pointer;
+  &:not(.flix-pager__item--disabled):not(.flix-pager__item--active):hover {
+    background-color: #e1e1e1;
+  }
+}

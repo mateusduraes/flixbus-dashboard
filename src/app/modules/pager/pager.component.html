@@ -1,6 +1,7 @@
 <div class="flix-pager">
-  <a href="#" aria-label="Previous page" class="flix-pager__item flix-pager__item--prev flix-pager__item--disabled"></a>
-  <a href="#" class="flix-pager__item flix-pager__item--active">1</a>
-  <a href="#" class="flix-pager__item">2</a>
-  <a href="#" aria-label="Next page" class="flix-pager__item flix-pager__item--next"></a>
+  <a aria-label="Previous page" class="flix-pager__item flix-pager__item--prev" [ngClass]="{'flix-pager__item--disabled': currentPage === 1}" (click)="goPreviousPage()"></a>
+  <a class="flix-pager__item" *ngIf="currentPage !== 1" (click)="goPage(currentPage - 1)">{{ currentPage - 1 }}</a>
+  <a class="flix-pager__item flix-pager__item--active">{{ currentPage }}</a>
+  <a class="flix-pager__item" *ngIf="currentPage + 1 <= totalPages" (click)="goPage(currentPage + 1)">{{ currentPage + 1}}</a>
+  <a aria-label="Next page" class="flix-pager__item flix-pager__item--next" [ngClass]="{'flix-pager__item--disabled': currentPage + 1 > totalPages}"  (click)="goNextPage()"></a>
 </div>
