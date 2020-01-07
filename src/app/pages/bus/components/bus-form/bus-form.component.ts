@@ -13,12 +13,16 @@ export class BusFormComponent implements OnInit {
   @Output() busFormSubmit: EventEmitter<IBus> = new EventEmitter<IBus>();
   @Input() stationList: IStation[] = [];
   @Input() busTypes: string[] = [];
+  @Input() isLoading: boolean = false;
   constructor(private formBuilder: FormBuilder) {}
 
   public submitForm(): void {
-    // check form valid, show something to the user
     Object.keys(this.busForm.controls).forEach(key => this.busForm.controls[key].markAsTouched());
     this.busFormSubmit.next(this.busForm.value);
+  }
+
+  public resetForm(): void {
+    this.busForm.reset();
   }
 
   private initForm(): void {

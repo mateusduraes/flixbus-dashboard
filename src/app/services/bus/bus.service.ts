@@ -18,7 +18,10 @@ export class BusService {
   }
 
   public registerBus(bus: IBus): Promise<any> {
-    return this.httpClient.post(`${environment.apiUrl}/buses`, bus).toPromise();
+    return this.httpClient
+      .post(`${environment.apiUrl}/buses`, bus)
+      .pipe(delay(500))
+      .toPromise();
   }
 
   public getBusTypes(): any {

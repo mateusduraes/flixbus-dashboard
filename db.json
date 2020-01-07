@@ -1,17 +1,78 @@
 {
   "buses": [
-    { "id": 1, "type": "Doubledecker", "plate": "BUS-124-179", "stationId": 1 },
-    { "id": 2, "type": "MiniBus", "plate": "BUS-231-712", "stationId": 2 },
-    { "id": 3, "type": "HybridBus", "plate": "BUS-123-456", "stationId": 2 },
-    { "id": 4, "type": "MiniBus", "plate": "BUS-321-756", "stationId": 4 },
-    { "id": 5, "type": "Doubledecker", "plate": "BUS-121-126", "stationId": 5 }
+    {
+      "id": 1,
+      "type": "Doubledecker",
+      "plate": "BUS-124-179",
+      "stationId": 1
+    },
+    {
+      "id": 2,
+      "type": "MiniBus",
+      "plate": "BUS-231-712",
+      "stationId": 2
+    },
+    {
+      "id": 3,
+      "type": "HybridBus",
+      "plate": "BUS-123-456",
+      "stationId": 2
+    },
+    {
+      "id": 4,
+      "type": "MiniBus",
+      "plate": "BUS-321-756",
+      "stationId": 4
+    },
+    {
+      "id": 5,
+      "type": "Doubledecker",
+      "plate": "BUS-121-126",
+      "stationId": 5
+    },
+    {
+      "stationId": "1",
+      "type": "HybridBus",
+      "plate": "BUS-666-666",
+      "id": 6
+    },
+    {
+      "stationId": "1",
+      "type": "MiniBus",
+      "plate": "BUS-781-457",
+      "id": 7
+    },
+    {
+      "stationId": "3",
+      "type": "Doubledecker",
+      "plate": "BUS-222-222",
+      "id": 8
+    }
   ],
   "stations": [
-    { "id": 1, "countSlots": "20" },
-    { "id": 2, "countSlots": "37" },
-    { "id": 3, "countSlots": "24" },
-    { "id": 4, "countSlots": "24" },
-    { "id": 5, "countSlots": "42" },
-    { "id": 6, "countSlots": "51" }
+    {
+      "id": 1,
+      "countSlots": "20"
+    },
+    {
+      "id": 2,
+      "countSlots": "37"
+    },
+    {
+      "id": 3,
+      "countSlots": "24"
+    },
+    {
+      "id": 4,
+      "countSlots": "24"
+    },
+    {
+      "id": 5,
+      "countSlots": "42"
+    },
+    {
+      "id": 6,
+      "countSlots": "51"
+    }
   ]
 }

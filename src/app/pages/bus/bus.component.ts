@@ -1,8 +1,9 @@
 import { BusService } from './../../services/bus/bus.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IBus } from 'src/app/models/bus';
 import { IStation } from 'src/app/models/station';
 import { StationService } from 'src/app/services/station/station.service';
+import { BusFormComponent } from './components/bus-form/bus-form.component';
 
 @Component({
   selector: 'app-bus',
@@ -12,13 +13,27 @@ import { StationService } from 'src/app/services/station/station.service';
 export class BusComponent implements OnInit {
   public busList: IBus[] = [];
   public isLoadingList: boolean = true;
+
   public stationList: IStation[] = [];
   public busTypes: string[] = [];
 
+  public isLoadingRegisterBus: boolean = false;
+  @ViewChild(BusFormComponent, { static: true }) busFormComponent: BusFormComponent;
+
   constructor(private busService: BusService, private stationService: StationService) {}
 
-  public registerBus(busValue): void {
-    console.log(busValue);
+  public async registerBus(busValue: IBus): Promise<void> {
+    try {
+      console.log(busValue);
+      this.isLoadingRegisterBus = true;
+      await this.busService.registerBus(busValue);
+      this.getBusList();
+      this.busFormComponent.resetForm();
+    } catch (e) {
+      console.error('Error registering bus');
+      // handle the error, show something to the user
+    }
+    this.isLoadingRegisterBus = false;
   }
 
   public filter(filter: any): void {}
