@@ -9,11 +9,11 @@ const routes: Routes = [
   },
   {
     path: 'buses',
-    loadChildren: () => import('./modules/bus/bus.module').then(m => m.BusModule),
+    loadChildren: () => import('./pages/bus/bus.module').then(m => m.BusModule),
   },
   {
     path: 'stations',
-    loadChildren: () => import('./modules/station/station.module').then(m => m.StationModule),
+    loadChildren: () => import('./pages/station/station.module').then(m => m.StationModule),
   },
 ];
 

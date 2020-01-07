@@ -1,0 +1,35 @@
+<form>
+  <div class="flix-control">
+    <div class="flix-input">
+      <label class="flix-label flix-input__label" for="message">Number of parking slots</label>
+      <input type="text" class="flix-input__field" placeholder="Type the number of parking slots" />
+    </div>
+  </div>
+  <div class="flix-box" *ngFor="let i of [1, 2]">
+    <h4 class="flix-h4 flix-h4--section-header">Bus {{ i }}</h4>
+    <div class="flix-control">
+      <div class="flix-select">
+        <!-- flix-select--valid -->
+        <!-- flix-select--valid -->
+        <label class="flix-select__label flix-label" for="select-valid">Bus Type</label>
+        <select id="select-valid" class="flix-select__field">
+          <option>Select a bus type</option>
+          <option value="1">Germany</option>
+          <option value="2">France</option>
+          <option value="3">Austria</option>
+          <option value="4">The Netherlands</option>
+        </select>
+      </div>
+    </div>
+    <div class="flix-control">
+      <div class="flix-input">
+        <label class="flix-label flix-input__label" for="message">Bus Number</label>
+        <input type="text" id="message" class="flix-input__field" placeholder="Type the plate number" />
+      </div>
+    </div>
+  </div>
+
+  <div class="flix-control">
+    <button type="button" class="flix-btn flix-btn--primary">Register bus</button>
+  </div>
+</form>

@@ -1,4 +1,4 @@
-<header class="flix-header flix-header--unfixed">
+<header class="flix-header flix-header--unfixed flix-space-sm-bottom">
   <div class="flix-header__inner">
     <!-- menu toggle container -->
     <button class="flix-header-nav-toggle" title="Toggle menu" (click)="toggleMenu()">
@@ -15,11 +15,13 @@
       <div class="flix-header-nav-wrapper" [ngClass]="{ 'flix-header-nav-wrapper--visible': showMenu }">
         <ul class="flix-header-nav">
           <!-- menu item with dropdown has flix-header-nav__item--has-subnav modifier attached -->
-          <li class="flix-header-nav__item" [routerLink]="['/buses']">
-            <a routerLinkActive="flix-header-nav__link--active" class="flix-header-nav__link">Buses</a>
+          <li class="flix-header-nav__item">
+            <a [routerLink]="['/buses']" routerLinkActive="flix-header-nav__link--active"
+              class="flix-header-nav__link">Buses</a>
           </li>
-          <li class="flix-header-nav__item" [routerLink]="['/stations']">
-            <a routerLinkActive="flix-header-nav__link--active" class="flix-header-nav__link">Stations</a>
+          <li class="flix-header-nav__item">
+            <a [routerLink]="['/stations']" routerLinkActive="flix-header-nav__link--active"
+              class="flix-header-nav__link">Stations</a>
           </li>
         </ul>
       </div>
