@@ -1,3 +1,4 @@
+import { BusService } from './../../services/bus/bus.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bus.component.scss'],
 })
 export class BusComponent implements OnInit {
-  constructor() {}
+  constructor(private busService: BusService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.busService.getBuses();
+  }
 }
