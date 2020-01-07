@@ -5,30 +5,10 @@
       <th>Type</th>
       <th>Number</th>
     </tr>
-    <tr>
-      <td>Station A</td>
-      <td>Doubledecker</td>
-      <td>BUS-124-179</td>
-    </tr>
-    <tr>
-      <td>Station B</td>
-      <td>MiniBus</td>
-      <td>BUS-231-712</td>
-    </tr>
-    <tr>
-      <td>Station C</td>
-      <td>HybridBus</td>
-      <td>BUS-123-456</td>
-    </tr>
-    <tr>
-      <td>Station D</td>
-      <td>MiniBus</td>
-      <td>BUS-321-756</td>
-    </tr>
-    <tr>
-      <td>Station E</td>
-      <td>Doubledecker</td>
-      <td>BUS-121-126</td>
+    <tr *ngFor="let bus of busList">
+      <td>{{ bus.stationId }}</td>
+      <td>{{ bus.type }}</td>
+      <td>{{ bus.plate }}</td>
     </tr>
   </table>
 </div>

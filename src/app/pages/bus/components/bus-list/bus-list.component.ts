@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IBus } from 'src/app/models/bus';
 
 @Component({
   selector: 'app-bus-list',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bus-list.component.scss'],
 })
 export class BusListComponent implements OnInit {
+  @Input() busList: IBus[] = [];
   constructor() {}
 
   ngOnInit() {}

@@ -1,37 +1,38 @@
-<form>
+<form [formGroup]="busForm" (ngSubmit)="submitForm()">
   <div class="flix-control">
-    <div class="flix-select">
+    <div class="flix-select" [ngClass]="{
+      'flix-select--error': busForm.get('stationId').touched && busForm.get('stationId').invalid,
+      'flix-select--valid': busForm.get('stationId').touched && busForm.get('stationId').valid
+    }">
       <label class="flix-select__label flix-label" for="select-valid">Station</label>
-      <select id="select-valid" class="flix-select__field">
-        <option>Select a station</option>
-        <option value="1">Germany</option>
-        <option value="2">France</option>
-        <option value="3">Austria</option>
-        <option value="4">The Netherlands</option>
+      <select formControlName="stationId" id="select-valid" class="flix-select__field">
+        <option [value]="null">Select a station</option>
+        <option *ngFor="let station of stationList" [value]="station.id">Station {{ station.id }}</option>
       </select>
     </div>
   </div>
   <div class="flix-control">
-    <div class="flix-select">
-      <!-- flix-select--valid -->
-      <!-- flix-select--valid -->
+    <div class="flix-select" [ngClass]="{
+        'flix-select--error': busForm.get('type').touched && busForm.get('type').invalid,
+        'flix-select--valid': busForm.get('type').touched && busForm.get('type').valid
+      }">
       <label class="flix-select__label flix-label" for="select-valid">Bus Type</label>
-      <select id="select-valid" class="flix-select__field">
-        <option>Select a bus type</option>
-        <option value="1">Germany</option>
-        <option value="2">France</option>
-        <option value="3">Austria</option>
-        <option value="4">The Netherlands</option>
+      <select formControlName="type" id="select-valid" class="flix-select__field">
+        <option [value]="null">Select a bus type</option>
+        <option *ngFor="let type of busTypes" [value]="type">{{ type }}</option>
       </select>
     </div>
   </div>
   <div class="flix-control">
-    <div class="flix-input">
-      <label class="flix-label flix-input__label" for="message">Bus Number</label>
-      <input type="text" id="message" class="flix-input__field" placeholder="Type the plate number" />
+    <div class="flix-input" [ngClass]="{
+      'flix-select--error': busForm.get('plate').touched && busForm.get('plate').invalid,
+      'flix-select--valid': busForm.get('plate').touched && busForm.get('plate').valid
+    }">
+      <label class="flix-label flix-input__label" for="input-bus-plate">Bus Plate</label>
+      <input type="text" formControlName="plate" id="input-bus-plate" class="flix-input__field" placeholder="Type the bus plate. Eg: BUS-XXX-XXX" />
     </div>
   </div>
   <div class="flix-control">
-    <button type="button" class="flix-btn flix-btn--primary">Register bus</button>
+    <app-button>Register bus</app-button>
   </div>
 </form>
