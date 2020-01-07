@@ -1,7 +1,6 @@
 import { IBus } from './../../models/bus';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,11 +9,11 @@ import { environment } from 'src/environments/environment';
 export class BusService {
   constructor(private httpClient: HttpClient) {}
 
-  public getBuses(): Observable<IBus[]> {
-    return this.httpClient.get<IBus[]>(`${environment.apiUrl}/buses`);
+  public getBuses(): Promise<IBus[]> {
+    return this.httpClient.get<IBus[]>(`${environment.apiUrl}/buses`).toPromise();
   }
 
-  public registerBus(bus: IBus): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/buses`, bus);
+  public registerBus(bus: IBus): Promise<any> {
+    return this.httpClient.post(`${environment.apiUrl}/buses`, bus).toPromise();
   }
 }
