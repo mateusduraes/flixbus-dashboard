@@ -1,0 +1,51 @@
+<header class="flix-header flix-header--unfixed">
+  <div class="flix-header__inner">
+    <!-- menu toggle container -->
+    <button class="flix-header-nav-toggle" title="Toggle menu" (click)="toggleMenu()">
+      <i class="flix-icon flix-icon-burger"></i>
+    </button>
+    <!-- logo container -->
+    <div class="flix-header-brand">
+      <a class="flix-header-brand__link" href="/">
+        <img class="flix-header-brand__img" src="assets/img/flixbus_white.png" alt="Flix visual" />
+      </a>
+    </div>
+    <!-- main menu container -->
+    <div class="flix-header-navbar">
+      <div class="flix-header-nav-wrapper" [ngClass]="{ 'flix-header-nav-wrapper--visible': showMenu }">
+        <ul class="flix-header-nav">
+          <!-- menu item with dropdown has flix-header-nav__item--has-subnav modifier attached -->
+          <li class="flix-header-nav__item" [routerLink]="['/buses']">
+            <a routerLinkActive="flix-header-nav__link--active" class="flix-header-nav__link">Buses</a>
+          </li>
+          <li class="flix-header-nav__item" [routerLink]="['/stations']">
+            <a routerLinkActive="flix-header-nav__link--active" class="flix-header-nav__link">Stations</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- container for additional header widgets -->
+    <div class="flix-header-widgets flix-header-widgets--sticky">
+      <div class="flix-header-user-widget">
+        <a href="#header" class="flix-avatar flix-header-user-widget__avatar">
+          <img class="flix-avatar__image" src="assets/img/avatar-placeholder.jpeg" alt="Picture of Mateus Duraes" />
+        </a>
+        <div class="flix-header-user-widget__content">
+          <ul class="flix-header-nav">
+            <li class="flix-header-nav__item flix-header-nav__item--has-subnav">
+              <span class="flix-header-nav__link">Mateus Durāes</span>
+              <ul class="flix-header-subnav">
+                <li class="flix-header-subnav__item">
+                  <a class="flix-header-subnav__link" href="#">Github</a>
+                </li>
+                <li class="flix-header-subnav__item">
+                  <a class="flix-header-subnav__link" href="#">Log out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
