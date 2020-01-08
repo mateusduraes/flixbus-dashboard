@@ -1,15 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { ICreateStationPayload } from './../../../models/create-station-payload';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-station-form',
   templateUrl: './station-form.component.html',
-  styleUrls: ['./station-form.component.scss']
+  styleUrls: ['./station-form.component.scss'],
 })
 export class StationFormComponent implements OnInit {
+  @Input() busTypes: string[] = [];
+  @Input() isLoading: boolean = false;
+  @Output() stationFormSubmit: EventEmitter<ICreateStationPayload> = new EventEmitter<ICreateStationPayload>();
+  public stationForm: FormGroup;
+  constructor(private formBuilder: FormBuilder) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  public submitForm(): void {
+    this.stationForm.markAllAsTouched();
+    this.stationFormSubmit.next({
+      station: {
+        countSlots: this.stationForm.get('countSlots').value,
+      },
+      buses: this.stationForm.get('buses').value,
+    });
   }
 
+  public resetForm(): void {
+    this.stationForm.reset();
+  }
+
+  public addBus(): void {
+    const buses = this.stationForm.get('buses') as FormArray;
+    buses.push(this.createBus());
+  }
+
+  public removeBus(index: number): void {
+    const buses = this.stationForm.get('buses') as FormArray;
+    buses.removeAt(index);
+  }
+
+  private initForm(): void {
+    this.stationForm = this.formBuilder.group({
+      countSlots: [null, [Validators.required, Validators.min(1)]],
+      buses: this.formBuilder.array([this.createBus()]),
+    });
+  }
+
+  private createBus(): FormGroup {
+    return this.formBuilder.group({
+      stationId: [],
+      type: [null, [Validators.required]],
+      plate: ['', [Validators.required, Validators.pattern(/^BUS-[0-9]{3}-[0-9]{3}$/)]],
+    });
+  }
+
+  ngOnInit() {
+    this.initForm();
+  }
 }

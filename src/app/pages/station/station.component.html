@@ -2,7 +2,11 @@
   <div class="flix-col-12 flix-col-4-sm">
     <h4 class="flix-h4 flix-h4--section-header">Add a new station</h4>
     <div class="flix-box">
-      <app-station-form></app-station-form>
+      <app-station-form
+        [busTypes]="busTypes"
+        [isLoading]="isLoadingRegisterStation"
+        (stationFormSubmit)="registerStation($event)">
+      </app-station-form>
     </div>
   </div>
 

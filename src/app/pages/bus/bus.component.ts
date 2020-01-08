@@ -66,7 +66,6 @@ export class BusComponent implements OnInit {
     try {
       this.isLoadingStations = true;
       this.stationList = await this.stationService.getStations();
-      console.log('this.stationList', this.stationList);
     } catch (e) {
       console.error('Error getting staionList', e);
       // Handle error, show to the user
@@ -76,7 +75,6 @@ export class BusComponent implements OnInit {
 
   private getBusTypes(): void {
     this.busTypes = this.busService.getBusTypes();
-    console.log('this.busTypes', this.busTypes);
   }
 
   ngOnInit() {

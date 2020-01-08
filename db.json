@@ -7,64 +7,10 @@
       "stationId": 1
     },
     {
-      "id": 2,
-      "type": "MiniBus",
-      "plate": "BUS-231-712",
-      "stationId": 2
-    },
-    {
-      "id": 3,
-      "type": "HybridBus",
-      "plate": "BUS-123-456",
-      "stationId": 2
-    },
-    {
-      "id": 4,
-      "type": "MiniBus",
-      "plate": "BUS-321-756",
-      "stationId": 4
-    },
-    {
-      "id": 5,
-      "type": "Doubledecker",
-      "plate": "BUS-121-126",
-      "stationId": 5
-    },
-    {
-      "stationId": "1",
-      "type": "HybridBus",
-      "plate": "BUS-666-666",
-      "id": 6
-    },
-    {
-      "stationId": "1",
-      "type": "MiniBus",
-      "plate": "BUS-781-457",
-      "id": 7
-    },
-    {
-      "stationId": "3",
-      "type": "Doubledecker",
-      "plate": "BUS-222-222",
-      "id": 8
-    },
-    {
-      "stationId": "1",
-      "type": "Doubledecker",
-      "plate": "XIZ-7845-4532",
-      "id": 9
-    },
-    {
-      "stationId": "4",
-      "type": "HybridBus",
-      "plate": "XOZ-4578-1245",
-      "id": 10
-    },
-    {
-      "stationId": "4",
-      "type": "Doubledecker",
-      "plate": "UHY-4545-2456",
-      "id": 11
+      "stationId": 2,
+      "type": "Regular",
+      "plate": "BUS-458-567",
+      "id": 2
     }
   ],
   "stations": [
@@ -73,24 +19,12 @@
       "countSlots": "20"
     },
     {
-      "id": 2,
-      "countSlots": "2"
+      "countSlots": "15",
+      "id": 2
     },
     {
-      "id": 3,
-      "countSlots": "24"
-    },
-    {
-      "id": 4,
-      "countSlots": "24"
-    },
-    {
-      "id": 5,
-      "countSlots": "42"
-    },
-    {
-      "id": 6,
-      "countSlots": "51"
+      "countSlots": "10",
+      "id": 3
     }
   ]
 }

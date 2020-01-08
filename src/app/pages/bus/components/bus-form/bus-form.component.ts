@@ -17,7 +17,7 @@ export class BusFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   public submitForm(): void {
-    Object.keys(this.busForm.controls).forEach(key => this.busForm.controls[key].markAsTouched());
+    this.busForm.markAllAsTouched();
     this.busFormSubmit.next(this.busForm.value);
   }
 
