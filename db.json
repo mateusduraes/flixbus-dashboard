@@ -7,28 +7,56 @@
       "stationId": 1
     },
     {
+      "id": 2,
+      "type": "MiniBus",
+      "plate": "BUS-000-000",
+      "stationId": 2
+    },
+    {
+      "id": 3,
+      "type": "HybridBus",
+      "plate": "BUS-333-313",
+      "stationId": 2
+    },
+    {
       "stationId": "2",
       "type": "Regular",
-      "plate": "BUS-457-124",
-      "id": 2
+      "plate": "BUS-111-111",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "type": "Doubledecker",
+      "plate": "BUS-222-222",
+      "stationId": 1
+    },
+    {
+      "id": 6,
+      "type": "MiniBus",
+      "plate": "BUS-333-333",
+      "stationId": 1
+    },
+    {
+      "id": 7,
+      "type": "HybridBus",
+      "plate": "BUS-444-444",
+      "stationId": 1
+    },
+    {
+      "stationId": "2",
+      "type": "Regular",
+      "plate": "BUS-122-122",
+      "id": 8
     }
   ],
   "stations": [
     {
       "id": 1,
-      "countSlots": "20"
+      "countSlots": "40"
     },
     {
-      "countSlots": "15",
+      "countSlots": "25",
       "id": 2
-    },
-    {
-      "countSlots": "10",
-      "id": 3
-    },
-    {
-      "countSlots": "15",
-      "id": 4
     }
   ]
 }
