@@ -7,3 +7,16 @@ body, html { padding: 0; margin: 0; }
     width: 100%;
   }
 }
+
+.selected-item {
+  border-color:#73d700 !important;
+  background-color: #73d700 !important;
+}
+
+.multiselect-item-checkbox input[type=checkbox] + div:before {
+  color: #73d700 !important;
+  border-color: #73d700 !important;
+}
+.multiselect-item-checkbox input[type=checkbox]:checked + div:before {
+  background-color: #73d700 !important;
+}

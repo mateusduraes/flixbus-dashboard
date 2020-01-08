@@ -9,6 +9,7 @@ import { BusFilterComponent } from './components/bus-filter/bus-filter.component
 import { PagerModule } from 'src/app/modules/pager/pager.module';
 import { LoadingModule } from 'src/app/modules/loading/loading.module';
 import { ButtonModule } from 'src/app/modules/button/button.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
     PagerModule,
     LoadingModule,
     ButtonModule,
+    NgMultiSelectDropDownModule,
   ],
 })
 export class BusModule {}
