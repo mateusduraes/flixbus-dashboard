@@ -35,7 +35,7 @@ export class BusComponent implements OnInit {
       this.busFormComponent.resetForm();
     } catch (e) {
       console.error('Error registering bus');
-      this.toastr.error('Sorry', 'There was an error registering the bus');
+      this.toastr.error('There was an error registering the bus', 'Sorry');
     }
     this.isLoadingRegisterBus = false;
   }
@@ -51,12 +51,16 @@ export class BusComponent implements OnInit {
   public async deleteBus(busId: number): Promise<void> {
     try {
       await this.busService.removeBus(busId);
-      this.toastr.success('Bus removed with success');
+      this.toastr.success('Bus removed with success', 'Success');
       this.getBusList();
     } catch (e) {
       console.error('Error removing bus', e);
-      this.toastr.error('Sorry', 'There was an error removing the bus');
+      this.toastr.error('There was an error removing the bus', 'Sorry');
     }
+  }
+
+  public showWarningInvalidForm(): void {
+    this.toastr.warning('The form is not valid, please verify all fields', 'Warning');
   }
 
   private async getBusList(page = 1, params?: IBusFilter): Promise<void> {
@@ -69,7 +73,7 @@ export class BusComponent implements OnInit {
       this.totalPages = Math.ceil(totalBuses / 6);
     } catch (e) {
       console.error('Error getting busList', e);
-      this.toastr.error('Sorry', 'There was an error getting the bus list');
+      this.toastr.error('There was an error getting the bus list', 'Sorry');
     }
     this.isLoadingList = false;
   }
@@ -81,7 +85,7 @@ export class BusComponent implements OnInit {
       this.stationList = stations;
     } catch (e) {
       console.error('Error getting staionList', e);
-      this.toastr.error('Sorry', 'There was an error getting the station list');
+      this.toastr.error('There was an error getting the station list', 'Sorry');
     }
     this.isLoadingStations = false;
   }

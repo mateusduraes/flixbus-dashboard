@@ -36,6 +36,10 @@ export class StationComponent implements OnInit {
     this.getStationList(page);
   }
 
+  public showWarningStationForm(): void {
+    this.toastr.warning('The form is not valid, please verify all fields', 'Warning');
+  }
+
   private async registerBuses(buses: Partial<IBus>[], stationId: number): Promise<void> {
     try {
       const busesPromises = buses
@@ -46,7 +50,7 @@ export class StationComponent implements OnInit {
         .map(bus => this.busService.registerBus(bus));
       await Promise.all(busesPromises);
     } catch (e) {
-      this.toastr.error('Sorry', 'There was an error registering buses');
+      this.toastr.error('There was an error registering buses', 'Sorry');
       console.error('Error registering buses with station', e);
     }
   }
@@ -56,7 +60,7 @@ export class StationComponent implements OnInit {
       const result = await this.stationServie.registerStations(station);
       return result.id;
     } catch (e) {
-      this.toastr.error('Sorry', 'There was an error registering the station');
+      this.toastr.error('There was an error registering the station', 'Sorry');
       console.error('Error registering station');
     }
   }
@@ -71,7 +75,7 @@ export class StationComponent implements OnInit {
       this.totalPages = Math.ceil(totalStations / 6);
     } catch (e) {
       console.error('Error getting station list', e);
-      this.toastr.error('Sorry', 'There was an error to get the stations list');
+      this.toastr.error('There was an error to get the stations list', 'Sorry');
     }
     this.isLoadingStationList = false;
   }

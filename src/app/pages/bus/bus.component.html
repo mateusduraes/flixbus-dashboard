@@ -2,7 +2,13 @@
   <div class="flix-col-12 flix-col-4-sm">
     <h4 class="flix-h4 flix-h4--section-header">Add a new bus</h4>
     <div class="flix-box">
-      <app-bus-form [busTypes]="busTypes" [isLoading]="isLoadingRegisterBus" (busFormSubmit)="registerBus($event)" [stationList]="stationList"></app-bus-form>
+      <app-bus-form
+        [busTypes]="busTypes"
+        [isLoading]="isLoadingRegisterBus"
+        (busFormInvalid)="showWarningInvalidForm()"
+        (busFormSubmit)="registerBus($event)"
+        [stationList]="stationList">
+      </app-bus-form>
     </div>
   </div>
 

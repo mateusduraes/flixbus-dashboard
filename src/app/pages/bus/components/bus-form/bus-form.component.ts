@@ -11,12 +11,18 @@ import { IBus } from '@models/bus';
 export class BusFormComponent implements OnInit {
   public busForm: FormGroup;
   @Output() busFormSubmit: EventEmitter<IBus> = new EventEmitter<IBus>();
+  @Output() busFormInvalid: EventEmitter<void> = new EventEmitter<void>();
   @Input() stationList: IStation[] = [];
   @Input() busTypes: string[] = [];
   @Input() isLoading: boolean = false;
   constructor(private formBuilder: FormBuilder) {}
 
   public submitForm(): void {
+    const { invalid } = this.busForm;
+    if (invalid) {
+      this.busFormInvalid.next();
+      return;
+    }
     this.busForm.markAllAsTouched();
     this.busFormSubmit.next(this.busForm.value);
   }

@@ -10,6 +10,7 @@ export class StationFormComponent implements OnInit {
   @Input() busTypes: string[] = [];
   @Input() isLoading: boolean = false;
   @Output() stationFormSubmit: EventEmitter<ICreateStationPayload> = new EventEmitter<ICreateStationPayload>();
+  @Output() stationFormInvalid: EventEmitter<void> = new EventEmitter<void>();
   public stationForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
@@ -19,6 +20,11 @@ export class StationFormComponent implements OnInit {
   }
 
   public submitForm(): void {
+    const { invalid } = this.stationForm;
+    if (invalid) {
+      this.stationFormInvalid.next();
+      return;
+    }
     this.stationForm.markAllAsTouched();
     this.stationFormSubmit.next({
       station: {

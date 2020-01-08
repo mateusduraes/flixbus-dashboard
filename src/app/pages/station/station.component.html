@@ -5,6 +5,7 @@
       <app-station-form
         [busTypes]="busTypes"
         [isLoading]="isLoadingRegisterStation"
+        (stationFormInvalid)="showWarningStationForm()"
         (stationFormSubmit)="registerStation($event)">
       </app-station-form>
     </div>

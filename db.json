@@ -5,6 +5,12 @@
       "type": "Doubledecker",
       "plate": "BUS-124-179",
       "stationId": 1
+    },
+    {
+      "stationId": "2",
+      "type": "Regular",
+      "plate": "BUS-457-124",
+      "id": 2
     }
   ],
   "stations": [
