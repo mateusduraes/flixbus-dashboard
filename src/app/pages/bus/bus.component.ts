@@ -4,6 +4,7 @@ import { IBus } from 'src/app/models/bus';
 import { IStation } from 'src/app/models/station';
 import { StationService } from 'src/app/services/station/station.service';
 import { BusFormComponent } from './components/bus-form/bus-form.component';
+import { IBusFilter } from 'src/app/models/bus-filter';
 
 @Component({
   selector: 'app-bus',
@@ -17,6 +18,7 @@ export class BusComponent implements OnInit {
   public stationList: IStation[] = [];
   public busTypes: string[] = [];
   public totalPages: number = 0;
+  public isLoadingStations: boolean = true;
 
   public isLoadingRegisterBus: boolean = false;
   @ViewChild(BusFormComponent, { static: true }) busFormComponent: BusFormComponent;
@@ -37,18 +39,20 @@ export class BusComponent implements OnInit {
     this.isLoadingRegisterBus = false;
   }
 
-  public filter(filter: any): void {}
+  public filter(filter: IBusFilter): void {
+    this.getBusList(0, filter);
+  }
 
   public changePage(page: number): void {
     this.getBusList(page);
   }
 
-  private async getBusList(page = 1): Promise<void> {
+  private async getBusList(page = 1, params?: IBusFilter): Promise<void> {
     try {
       if (page === 1) {
         this.isLoadingList = true;
       }
-      const { buses, totalBuses } = await this.busService.getBuses(page);
+      const { buses, totalBuses } = await this.busService.getBuses(page, params);
       this.busList = buses;
       this.totalPages = Math.ceil(totalBuses / 6);
     } catch (e) {
@@ -60,12 +64,14 @@ export class BusComponent implements OnInit {
 
   private async getStationList(): Promise<void> {
     try {
+      this.isLoadingStations = true;
       this.stationList = await this.stationService.getStations();
       console.log('this.stationList', this.stationList);
     } catch (e) {
       console.error('Error getting staionList', e);
       // Handle error, show to the user
     }
+    this.isLoadingStations = false;
   }
 
   private getBusTypes(): void {

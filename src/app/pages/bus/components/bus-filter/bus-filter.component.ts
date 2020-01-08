@@ -1,5 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { IStation } from 'src/app/models/station';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { IBusFilter } from 'src/app/models/bus-filter';
 
 @Component({
   selector: 'app-bus-filter',
@@ -7,41 +10,58 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   styleUrls: ['./bus-filter.component.scss'],
 })
 export class BusFilterComponent implements OnInit {
-  @Output() busFilterChange: EventEmitter<any> = new EventEmitter<void>();
-  dropdownList = [];
-  selectedItems = [];
-  dropdownSettings = {};
+  @Output() busFilterChange: EventEmitter<IBusFilter> = new EventEmitter<IBusFilter>();
+  @Input() stationList: IStation[] = [];
+  @Input() busTypes: string[] = [];
+  busPlateChanged: Subject<string> = new Subject<string>();
+  busPlate: string = '';
+  busTypesSettings: any = {};
+  stationListSettings: any = {};
+  selectableBusTypes = [];
+  selectedBusTypes = [];
+  selectedStations = [];
 
   constructor() {}
 
+  public emitFilterChange(): void {
+    this.busFilterChange.emit({
+      stations: [...this.selectedStations],
+      busTypes: [...this.selectedBusTypes],
+      plate: this.busPlate,
+    });
+  }
+
+  public onFieldChange(query: string) {
+    this.busPlateChanged.next(query);
+  }
+
   ngOnInit() {
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' },
-    ];
-
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-    ];
-
-    this.dropdownSettings = {
+    this.stationList = this.stationList.map(station => {
+      station.aliasName = `Station ${station.id}`;
+      return station;
+    });
+    this.selectableBusTypes = this.busTypes.map((busType, index) => ({ busType, id: index }));
+    this.stationListSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
+      idField: 'id',
+      textField: 'aliasName',
       itemsShowLimit: 3,
-      allowSearchFilter: true,
+      allowSearchFilter: false,
+      enableCheckAll: false,
     };
-  }
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
+
+    this.busTypesSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'busType',
+      itemsShowLimit: 3,
+      allowSearchFilter: false,
+      enableCheckAll: false,
+    };
+
+    this.busPlateChanged.pipe(debounceTime(1000), distinctUntilChanged()).subscribe(model => {
+      this.busPlate = model;
+      this.emitFilterChange();
+    });
   }
 }

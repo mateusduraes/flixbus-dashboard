@@ -8,8 +8,8 @@
 
   <div class="flix-col-12 flix-col-8-sm">
     <h4 class="flix-h4 flix-h4--section-header">Bus list</h4>
-    <div class="flix-box" *ngIf="!isLoadingList; else loadingTemplate">
-      <app-bus-filter (busFilterChange)="filter($event)"></app-bus-filter>
+    <div class="flix-box" *ngIf="!isLoadingList && !isLoadingStations; else loadingTemplate">
+      <app-bus-filter [busTypes]="busTypes" [stationList]="stationList" (busFilterChange)="filter($event)"></app-bus-filter>
       <app-bus-list [busList]="busList"></app-bus-list>
       <app-pager (pagerChange)="changePage($event)" [totalPages]="totalPages"></app-pager>
     </div>
