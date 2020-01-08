@@ -47,7 +47,7 @@ export class StationFormComponent implements OnInit {
 
   private initForm(): void {
     this.stationForm = this.formBuilder.group({
-      countSlots: [null, [Validators.required, Validators.min(1)]],
+      countSlots: [1, [Validators.required, Validators.min(1)]],
       buses: this.formBuilder.array([this.createBus()]),
     });
   }
