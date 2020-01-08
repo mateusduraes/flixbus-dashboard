@@ -1,10 +1,10 @@
 import { StationFormComponent } from './station-form/station-form.component';
-import { IBus } from './../../models/bus';
+import { IBus } from '@models/bus';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { StationService } from 'src/app/services/station/station.service';
-import { IStation } from 'src/app/models/station';
-import { BusService } from 'src/app/services/bus/bus.service';
-import { ICreateStationPayload } from 'src/app/models/create-station-payload';
+import { StationService } from '@services/station/station.service';
+import { IStation } from '@models/station';
+import { BusService } from '@services/bus/bus.service';
+import { ICreateStationPayload } from '@models/create-station-payload';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,6 +17,7 @@ export class StationComponent implements OnInit {
   public isLoadingStationList: boolean = false;
   public busTypes: string[] = [];
   public isLoadingRegisterStation: boolean = false;
+  public totalPages: number = 0;
   @ViewChild(StationFormComponent, { static: true }) stationFormComponent: StationFormComponent;
   constructor(private stationServie: StationService, private busService: BusService, private toastr: ToastrService) {}
 
@@ -29,6 +30,10 @@ export class StationComponent implements OnInit {
     this.toastr.success('Registered with success');
     this.isLoadingRegisterStation = false;
     this.getStationList();
+  }
+
+  public changePage(page: number): void {
+    this.getStationList(page);
   }
 
   private async registerBuses(buses: Partial<IBus>[], stationId: number): Promise<void> {
@@ -56,10 +61,14 @@ export class StationComponent implements OnInit {
     }
   }
 
-  private async getStationList(): Promise<void> {
+  private async getStationList(page = 1): Promise<void> {
     try {
-      this.isLoadingStationList = true;
-      this.stationList = await this.stationServie.getStations();
+      if (page === 1) {
+        this.isLoadingStationList = true;
+      }
+      const { stations, totalStations } = await this.stationServie.getStations(page);
+      this.stationList = stations;
+      this.totalPages = Math.ceil(totalStations / 6);
     } catch (e) {
       console.error('Error getting station list', e);
       this.toastr.error('Sorry', 'There was an error to get the stations list');

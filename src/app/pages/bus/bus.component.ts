@@ -1,10 +1,10 @@
-import { BusService } from './../../services/bus/bus.service';
+import { BusService } from '@services/bus/bus.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IBus } from 'src/app/models/bus';
-import { IStation } from 'src/app/models/station';
-import { StationService } from 'src/app/services/station/station.service';
+import { IBus } from '@models/bus';
+import { IStation } from '@models/station';
+import { StationService } from '@services/station/station.service';
 import { BusFormComponent } from './components/bus-form/bus-form.component';
-import { IBusFilter } from 'src/app/models/bus-filter';
+import { IBusFilter } from '@models/bus-filter';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -66,7 +66,8 @@ export class BusComponent implements OnInit {
   private async getStationList(): Promise<void> {
     try {
       this.isLoadingStations = true;
-      this.stationList = await this.stationService.getStations();
+      const { stations } = await this.stationService.getStations();
+      this.stationList = stations;
     } catch (e) {
       console.error('Error getting staionList', e);
       this.toastr.error('Sorry', 'There was an error getting the station list');

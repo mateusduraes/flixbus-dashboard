@@ -1,10 +1,9 @@
-import { IBusFilter } from './../../models/bus-filter';
-import { IBusFilter } from 'src/app/models/bus-filter';
-import { IBus, BusType } from './../../models/bus';
+import { IBusFilter } from '@models/bus-filter';
+import { IBus, BusType } from '@models/bus';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { delay, map, filter } from 'rxjs/operators';
+import { environment } from '@env/environment';
+import { delay, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

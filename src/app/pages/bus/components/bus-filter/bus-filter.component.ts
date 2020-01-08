@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
-import { IStation } from 'src/app/models/station';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { IStation } from '@models/station';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { IBusFilter } from 'src/app/models/bus-filter';
+import { IBusFilter } from '@models/bus-filter';
 
 @Component({
   selector: 'app-bus-filter',

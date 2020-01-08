@@ -8,7 +8,7 @@
       <input type="text" class="flix-input__field" formControlName="countSlots" placeholder="Type the number of parking slots" />
     </div>
   </div>
-  <div class="flix-box form-bus" formArrayName="buses" *ngFor="let bus of stationForm.get('buses').controls; let i = index; let last = last;">
+  <div class="flix-box form-bus" formArrayName="buses" *ngFor="let bus of formArray; let i = index; let last = last;">
     <span class="remove-btn" (click)="removeBus(i)">
       <i class="flix-icon flix-icon-close"></i>
     </span>
@@ -36,7 +36,7 @@
         </div>
       </div>
     </ng-container>
-    <button *ngIf="last && stationForm.get('buses').controls.length < stationForm.get('countSlots').value" type="button" (click)="addBus()" class="btn-add-bus flix-btn flix-btn--has-icon flix-btn--tertiary flix-btn--square">
+    <button *ngIf="last && formArray.length < stationForm.get('countSlots').value" type="button" (click)="addBus()" class="btn-add-bus flix-btn flix-btn--has-icon flix-btn--tertiary flix-btn--square">
       <i class="flix-btn__icon flix-icon flix-icon-plus"></i>
   </button>
   </div>

@@ -14,7 +14,7 @@
     <h4 class="flix-h4 flix-h4--section-header">Station list</h4>
     <div class="flix-box" *ngIf="!isLoadingStationList; else loadingTemplate">
       <app-station-list [stationList]="stationList"></app-station-list>
-      <app-pager></app-pager>
+      <app-pager (pagerChange)="changePage($event)" [totalPages]="totalPages"></app-pager>
     </div>
   </div>
 </div>

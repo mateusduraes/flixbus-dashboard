@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IBus } from 'src/app/models/bus';
+import { IBus } from '@models/bus';
 
 @Component({
   selector: 'app-bus-list',

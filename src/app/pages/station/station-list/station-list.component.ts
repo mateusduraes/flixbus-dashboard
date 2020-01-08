@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IStation } from 'src/app/models/station';
+import { IStation } from '@models/station';
 
 @Component({
   selector: 'app-station-list',

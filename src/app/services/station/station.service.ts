@@ -1,9 +1,9 @@
 import { delay, map } from 'rxjs/operators';
-import { IBus } from './../../models/bus';
-import { HttpClient } from '@angular/common/http';
+import { IBus } from '@models/bus';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IStation } from 'src/app/models/station';
-import { environment } from 'src/environments/environment';
+import { IStation } from '@models/station';
+import { environment } from '@env/environment';
 import { forkJoin } from 'rxjs';
 
 @Injectable({
@@ -12,18 +12,29 @@ import { forkJoin } from 'rxjs';
 export class StationService {
   constructor(private httpClient: HttpClient) {}
 
-  public getStations(): Promise<IStation[]> {
+  public getStations(page: number = 1): Promise<{ totalStations: number; stations: IStation[] }> {
+    const params = new HttpParams({
+      fromObject: {
+        _page: String(page),
+        _limit: String(6),
+      },
+    });
+
     return forkJoin(
-      this.httpClient.get<IStation[]>(`${environment.apiUrl}/stations`).pipe(delay(500)),
+      this.httpClient
+        .get<IStation[]>(`${environment.apiUrl}/stations`, { observe: 'response', params })
+        .pipe(delay(500)),
       this.httpClient.get<IBus[]>(`${environment.apiUrl}/buses`).pipe(delay(500)),
     )
       .pipe(
-        map(([stations, buses]: [IStation[], IBus[]]) => {
-          return stations.map(station => {
+        map(([stationsResponse, buses]: [HttpResponse<IStation[]>, IBus[]]) => {
+          const totalStations = Number(stationsResponse.headers.get('X-Total-Count'));
+          const stations = stationsResponse.body.map(station => {
             const countBuses = buses.filter(bus => bus.stationId === station.id).length;
             station.availableSlots = station.countSlots - countBuses;
             return station;
           });
+          return { totalStations, stations };
         }),
       )
       .toPromise();

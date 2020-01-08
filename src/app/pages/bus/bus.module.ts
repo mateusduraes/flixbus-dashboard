@@ -6,9 +6,9 @@ import { BusComponent } from './bus.component';
 import { BusListComponent } from './components/bus-list/bus-list.component';
 import { BusFormComponent } from './components/bus-form/bus-form.component';
 import { BusFilterComponent } from './components/bus-filter/bus-filter.component';
-import { PagerModule } from 'src/app/modules/pager/pager.module';
-import { LoadingModule } from 'src/app/modules/loading/loading.module';
-import { ButtonModule } from 'src/app/modules/button/button.module';
+import { PagerModule } from '@modules/pager/pager.module';
+import { LoadingModule } from '@modules/loading/loading.module';
+import { ButtonModule } from '@modules/button/button.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 const routes: Routes = [

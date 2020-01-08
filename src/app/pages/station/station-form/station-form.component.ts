@@ -1,4 +1,4 @@
-import { ICreateStationPayload } from './../../../models/create-station-payload';
+import { ICreateStationPayload } from '@models/create-station-payload';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 @Component({
@@ -11,7 +11,12 @@ export class StationFormComponent implements OnInit {
   @Input() isLoading: boolean = false;
   @Output() stationFormSubmit: EventEmitter<ICreateStationPayload> = new EventEmitter<ICreateStationPayload>();
   public stationForm: FormGroup;
+
   constructor(private formBuilder: FormBuilder) {}
+
+  get formArray() {
+    return this.stationForm.get('buses') as FormArray;
+  }
 
   public submitForm(): void {
     this.stationForm.markAllAsTouched();

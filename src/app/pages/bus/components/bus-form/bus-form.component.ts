@@ -1,7 +1,7 @@
-import { IStation } from 'src/app/models/station';
+import { IStation } from '@models/station';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IBus } from 'src/app/models/bus';
+import { IBus } from '@models/bus';
 
 @Component({
   selector: 'app-bus-form',
