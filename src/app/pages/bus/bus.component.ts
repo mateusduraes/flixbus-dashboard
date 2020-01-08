@@ -48,6 +48,17 @@ export class BusComponent implements OnInit {
     this.getBusList(page);
   }
 
+  public async deleteBus(busId: number): Promise<void> {
+    try {
+      await this.busService.removeBus(busId);
+      this.toastr.success('Bus removed with success');
+      this.getBusList();
+    } catch (e) {
+      console.error('Error removing bus', e);
+      this.toastr.error('Sorry', 'There was an error removing the bus');
+    }
+  }
+
   private async getBusList(page = 1, params?: IBusFilter): Promise<void> {
     try {
       if (page === 1) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IBus } from '@models/bus';
 
 @Component({
@@ -8,7 +8,12 @@ import { IBus } from '@models/bus';
 })
 export class BusListComponent implements OnInit {
   @Input() busList: IBus[] = [];
+  @Output() busListRemove: EventEmitter<number> = new EventEmitter<number>();
   constructor() {}
+
+  removeBus(bus: IBus) {
+    this.busListRemove.next(bus.id);
+  }
 
   ngOnInit() {}
 }

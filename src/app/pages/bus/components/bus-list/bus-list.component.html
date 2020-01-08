@@ -4,11 +4,17 @@
       <th>Station</th>
       <th>Type</th>
       <th>Number</th>
+      <th>Actions</th>
     </tr>
     <tr *ngFor="let bus of busList">
       <td>Station {{ bus.stationId }}</td>
       <td>{{ bus.type }}</td>
       <td>{{ bus.plate }}</td>
+      <td>
+      <button (click)="removeBus(bus)" type="button" class="flix-btn flix-btn--has-icon flix-btn--danger flix-btn--square">
+        <i class="flix-btn__icon flix-icon flix-icon-delete"></i>
+      </button>
+      </td>
     </tr>
   </table>
 </div>

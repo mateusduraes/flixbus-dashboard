@@ -56,6 +56,10 @@ export class BusService {
       .toPromise();
   }
 
+  public async removeBus(busId: number): Promise<void> {
+    await this.httpClient.delete(`${environment.apiUrl}/buses/${busId}`).toPromise();
+  }
+
   public getBusTypes(): any {
     return Object.keys(BusType).map(key => BusType[key]);
   }
