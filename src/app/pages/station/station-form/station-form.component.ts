@@ -20,12 +20,12 @@ export class StationFormComponent implements OnInit {
   }
 
   public submitForm(): void {
+    this.stationForm.markAllAsTouched();
     const { invalid } = this.stationForm;
     if (invalid) {
       this.stationFormInvalid.next();
       return;
     }
-    this.stationForm.markAllAsTouched();
     this.stationFormSubmit.next({
       station: {
         countSlots: this.stationForm.get('countSlots').value,

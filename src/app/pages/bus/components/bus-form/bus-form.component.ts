@@ -18,12 +18,12 @@ export class BusFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   public submitForm(): void {
+    this.busForm.markAllAsTouched();
     const { invalid } = this.busForm;
     if (invalid) {
       this.busFormInvalid.next();
       return;
     }
-    this.busForm.markAllAsTouched();
     this.busFormSubmit.next(this.busForm.value);
   }
 

@@ -35,12 +35,18 @@ export class BusFilterComponent implements OnInit {
     this.busPlateChanged.next(query);
   }
 
-  ngOnInit() {
+  private setStationList(): void {
     this.stationList = this.stationList.map(station => {
       station.aliasName = `Station ${station.id}`;
       return station;
     });
+  }
+
+  private setBusTypes(): void {
     this.selectableBusTypes = this.busTypes.map((busType, index) => ({ busType, id: index }));
+  }
+
+  private setSettings(): void {
     this.stationListSettings = {
       singleSelection: false,
       idField: 'id',
@@ -58,10 +64,19 @@ export class BusFilterComponent implements OnInit {
       allowSearchFilter: false,
       enableCheckAll: false,
     };
+  }
 
+  private listenBusPlateChanges() {
     this.busPlateChanged.pipe(debounceTime(1000), distinctUntilChanged()).subscribe(model => {
       this.busPlate = model;
       this.emitFilterChange();
     });
+  }
+
+  ngOnInit() {
+    this.setStationList();
+    this.setBusTypes();
+    this.setSettings();
+    this.listenBusPlateChanges();
   }
 }
