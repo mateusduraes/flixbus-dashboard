@@ -29,7 +29,7 @@ export class StationService {
       .toPromise();
   }
 
-  public registerStations(station: IStation): Promise<any> {
+  public registerStations(station: Partial<IStation>): Promise<any> {
     console.log('station to reg', station);
     return this.httpClient.post(`${environment.apiUrl}/stations`, station).toPromise();
   }

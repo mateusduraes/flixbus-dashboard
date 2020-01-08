@@ -5,6 +5,7 @@ import { IStation } from 'src/app/models/station';
 import { StationService } from 'src/app/services/station/station.service';
 import { BusFormComponent } from './components/bus-form/bus-form.component';
 import { IBusFilter } from 'src/app/models/bus-filter';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bus',
@@ -23,7 +24,7 @@ export class BusComponent implements OnInit {
   public isLoadingRegisterBus: boolean = false;
   @ViewChild(BusFormComponent, { static: true }) busFormComponent: BusFormComponent;
 
-  constructor(private busService: BusService, private stationService: StationService) {}
+  constructor(private busService: BusService, private stationService: StationService, private toastr: ToastrService) {}
 
   public async registerBus(busValue: IBus): Promise<void> {
     try {
@@ -34,7 +35,7 @@ export class BusComponent implements OnInit {
       this.busFormComponent.resetForm();
     } catch (e) {
       console.error('Error registering bus');
-      // handle the error, show something to the user
+      this.toastr.error('Sorry', 'There was an error registering the bus');
     }
     this.isLoadingRegisterBus = false;
   }
@@ -57,7 +58,7 @@ export class BusComponent implements OnInit {
       this.totalPages = Math.ceil(totalBuses / 6);
     } catch (e) {
       console.error('Error getting busList', e);
-      // Handle error, show to the user
+      this.toastr.error('Sorry', 'There was an error getting the bus list');
     }
     this.isLoadingList = false;
   }
@@ -68,7 +69,7 @@ export class BusComponent implements OnInit {
       this.stationList = await this.stationService.getStations();
     } catch (e) {
       console.error('Error getting staionList', e);
-      // Handle error, show to the user
+      this.toastr.error('Sorry', 'There was an error getting the station list');
     }
     this.isLoadingStations = false;
   }

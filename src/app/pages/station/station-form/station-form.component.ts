@@ -1,7 +1,6 @@
 import { ICreateStationPayload } from './../../../models/create-station-payload';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-
 @Component({
   selector: 'app-station-form',
   templateUrl: './station-form.component.html',
@@ -30,7 +29,10 @@ export class StationFormComponent implements OnInit {
 
   public addBus(): void {
     const buses = this.stationForm.get('buses') as FormArray;
-    buses.push(this.createBus());
+    const countSlots = this.stationForm.get('countSlots').value;
+    if (buses.length < countSlots) {
+      buses.push(this.createBus());
+    }
   }
 
   public removeBus(index: number): void {

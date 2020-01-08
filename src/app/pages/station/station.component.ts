@@ -5,6 +5,7 @@ import { StationService } from 'src/app/services/station/station.service';
 import { IStation } from 'src/app/models/station';
 import { BusService } from 'src/app/services/bus/bus.service';
 import { ICreateStationPayload } from 'src/app/models/create-station-payload';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-station',
@@ -17,7 +18,7 @@ export class StationComponent implements OnInit {
   public busTypes: string[] = [];
   public isLoadingRegisterStation: boolean = false;
   @ViewChild(StationFormComponent, { static: true }) stationFormComponent: StationFormComponent;
-  constructor(private stationServie: StationService, private busService: BusService) {}
+  constructor(private stationServie: StationService, private busService: BusService, private toastr: ToastrService) {}
 
   public async registerStation(payload: ICreateStationPayload): Promise<void> {
     this.isLoadingRegisterStation = true;
@@ -25,11 +26,12 @@ export class StationComponent implements OnInit {
     const stationId = await this.doRegisterStation(station);
     await this.registerBuses(buses, stationId);
     this.stationFormComponent.resetForm();
+    this.toastr.success('Registered with success');
     this.isLoadingRegisterStation = false;
     this.getStationList();
   }
 
-  private async registerBuses(buses: IBus[], stationId: number): Promise<void> {
+  private async registerBuses(buses: Partial<IBus>[], stationId: number): Promise<void> {
     try {
       const busesPromises = buses
         .map(bus => {
@@ -39,15 +41,17 @@ export class StationComponent implements OnInit {
         .map(bus => this.busService.registerBus(bus));
       await Promise.all(busesPromises);
     } catch (e) {
+      this.toastr.error('Sorry', 'There was an error registering buses');
       console.error('Error registering buses with station', e);
     }
   }
 
-  private async doRegisterStation(station: IStation): Promise<number> {
+  private async doRegisterStation(station: Partial<IStation>): Promise<number> {
     try {
       const result = await this.stationServie.registerStations(station);
       return result.id;
     } catch (e) {
+      this.toastr.error('Sorry', 'There was an error registering the station');
       console.error('Error registering station');
     }
   }
@@ -58,7 +62,7 @@ export class StationComponent implements OnInit {
       this.stationList = await this.stationServie.getStations();
     } catch (e) {
       console.error('Error getting station list', e);
-      // handle error
+      this.toastr.error('Sorry', 'There was an error to get the stations list');
     }
     this.isLoadingStationList = false;
   }

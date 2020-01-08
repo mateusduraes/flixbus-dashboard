@@ -36,7 +36,7 @@
         </div>
       </div>
     </ng-container>
-    <button *ngIf="last" type="button" (click)="addBus()" class="btn-add-bus flix-btn flix-btn--has-icon flix-btn--tertiary flix-btn--square">
+    <button *ngIf="last && stationForm.get('buses').controls.length < stationForm.get('countSlots').value" type="button" (click)="addBus()" class="btn-add-bus flix-btn flix-btn--has-icon flix-btn--tertiary flix-btn--square">
       <i class="flix-btn__icon flix-icon flix-icon-plus"></i>
   </button>
   </div>

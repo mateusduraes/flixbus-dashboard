@@ -50,7 +50,7 @@ export class BusService {
       .toPromise();
   }
 
-  public registerBus(bus: IBus): Promise<any> {
+  public registerBus(bus: Partial<IBus>): Promise<any> {
     return this.httpClient
       .post(`${environment.apiUrl}/buses`, bus)
       .pipe(delay(500))
