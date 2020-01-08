@@ -1,0 +1,16 @@
+{
+  "buses": [
+    {
+      "stationId": "1",
+      "type": "Regular",
+      "plate": "BUS-123-456",
+      "id": 1
+    }
+  ],
+  "stations": [
+    {
+      "id": 1,
+      "countSlots": "40"
+    }
+  ]
+}

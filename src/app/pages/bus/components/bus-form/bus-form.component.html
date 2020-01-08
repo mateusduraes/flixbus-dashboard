@@ -5,7 +5,7 @@
       'flix-select--valid': busForm.get('stationId').touched && busForm.get('stationId').valid
     }">
       <label class="flix-select__label flix-label" for="select-valid">Station</label>
-      <select formControlName="stationId" id="select-valid" class="flix-select__field">
+      <select formControlName="stationId" id="select-station" class="flix-select__field">
         <option [value]="undefined">Select a station</option>
         <option *ngFor="let station of stationList" [disabled]="!station.availableSlots" [value]="station.id">
           Station {{ station.id }} {{ !station.availableSlots ? '- Full' : ''}}
@@ -19,7 +19,7 @@
         'flix-select--valid': busForm.get('type').touched && busForm.get('type').valid
       }">
       <label class="flix-select__label flix-label" for="select-valid">Bus Type</label>
-      <select formControlName="type" id="select-valid" class="flix-select__field">
+      <select formControlName="type" id="select-bus-type" class="flix-select__field">
         <option [value]="undefined" disabled>Select a bus type</option>
         <option *ngFor="let type of busTypes" [value]="type">{{ type }}</option>
       </select>
