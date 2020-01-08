@@ -1,12 +1,6 @@
 {
   "buses": [
     {
-      "id": 1,
-      "type": "Doubledecker",
-      "plate": "BUS-124-179",
-      "stationId": 1
-    },
-    {
       "id": 2,
       "type": "MiniBus",
       "plate": "BUS-000-000",
@@ -47,6 +41,24 @@
       "type": "Regular",
       "plate": "BUS-122-122",
       "id": 8
+    },
+    {
+      "stationId": "1",
+      "type": "Doubledecker",
+      "plate": "BUS-845-553",
+      "id": 9
+    },
+    {
+      "stationId": 3,
+      "type": "Regular",
+      "plate": "BUS-178-178",
+      "id": 10
+    },
+    {
+      "stationId": 3,
+      "type": "Regular",
+      "plate": "BUS-179-179",
+      "id": 11
     }
   ],
   "stations": [
@@ -57,6 +69,10 @@
     {
       "countSlots": "25",
       "id": 2
+    },
+    {
+      "countSlots": "2",
+      "id": 3
     }
   ]
 }
